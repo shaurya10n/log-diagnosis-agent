@@ -1,0 +1,188 @@
+[
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T08:14:22.103Z",
+    "message": "BGP: %BGP-5-ADJCHANGE: neighbor 10.0.0.2 (AS 65001) Up",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T08:14:23.441Z",
+    "message": "SYS: NTP synchronized to 203.0.113.10 stratum 2, offset +0.002ms",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T08:15:01.887Z",
+    "message": "IF-MGR: Interface GigabitEthernet0/0/1 changed state to up",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T08:16:44.012Z",
+    "message": "SSH: Accepted publickey for admin from 192.168.10.45 port 52104",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T08:17:09.556Z",
+    "message": "OSPF: %OSPF-5-ADJCHG: Process 1, Nbr 172.16.5.2 on Vlan100 from LOADING to FULL",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-CORE-02",
+    "timestamp": "2026-06-25T08:18:33.229Z",
+    "message": "SNMP: SNMP trap linkUp ifIndex 14 ifDescr Gi0/0/14 sent to 10.10.1.50",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T08:19:55.701Z",
+    "message": "SYS: Configuration commit by user netops via NETCONF session-id 4821",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T08:22:18.334Z",
+    "message": "DHCP: DHCPACK on Gi0/0/2 to 192.168.50.112 via 192.168.50.1",
+    "category": "NOISE"
+  },
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T09:03:11.002Z",
+    "message": "LINK: %LINK-3-UPDOWN: Interface TenGigE0/1/0/12, changed state to down",
+    "category": "NETWORK_FAILURE"
+  },
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T09:03:11.048Z",
+    "message": "LINEPROTO: %LINEPROTO-5-UPDOWN: Line protocol on Interface TenGigE0/1/0/12, changed state to down",
+    "category": "NETWORK_FAILURE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T09:07:44.891Z",
+    "message": "BGP: %BGP-5-ADJCHANGE: neighbor 203.0.113.45 (AS 64512) Down - holdtime expired",
+    "category": "NETWORK_FAILURE"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T09:12:30.117Z",
+    "message": "OSPF: %OSPF-5-ADJCHG: Process 1, Nbr 10.20.30.1 on Gi0/0/0 from FULL to DOWN, Neighbor Down: Dead timer expired",
+    "category": "NETWORK_FAILURE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T09:18:02.663Z",
+    "message": "IP: ICMP unreachable sent to 198.51.100.88 (type 3, code 1) - destination host unreachable via Gi0/0/0",
+    "category": "NETWORK_FAILURE"
+  },
+  {
+    "device_id": "RTR-CORE-02",
+    "timestamp": "2026-06-25T09:25:47.904Z",
+    "message": "LACP: %LACP-4-UNEXPECTED: Channel Po12 member Gi0/0/3 moved to suspended state - partner sync loss",
+    "category": "NETWORK_FAILURE"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T09:31:19.778Z",
+    "message": "IPSEC: IKE phase 1 negotiation failed for peer 198.51.100.200 - no proposal chosen (ERR 14)",
+    "category": "NETWORK_FAILURE"
+  },
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T10:01:05.332Z",
+    "message": "FW: %FW-4-UPGRADE_FAIL: Firmware upgrade aborted at stage 3/7 - checksum mismatch on image router-os-7.12.1.bin",
+    "category": "FIRMWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T10:04:18.009Z",
+    "message": "FW: Bootloader rejected image slot B - signature verification failed (RSA-2048)",
+    "category": "FIRMWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T10:08:42.551Z",
+    "message": "SYS: %SYS-3-BOOTVAR: Unable to set boot variable - flash write protect enabled on partition 2",
+    "category": "FIRMWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-CORE-02",
+    "timestamp": "2026-06-25T10:15:27.884Z",
+    "message": "FW: Post-upgrade health check failed - routing daemon (ribd) failed to start after reboot",
+    "category": "FIRMWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T10:22:09.417Z",
+    "message": "FW: Delta patch apply failed for CVE-2026-1842 - dependency conflict with installed feature license pkg-ADV-SEC",
+    "category": "FIRMWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T10:45:33.126Z",
+    "message": "ENV: %ENV-2-TEMP_CRIT: Temperature sensor TS-CPU-A reading 94C exceeds critical threshold 85C",
+    "category": "HARDWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-CORE-02",
+    "timestamp": "2026-06-25T10:46:01.903Z",
+    "message": "ENV: Fan tray FAN-2 reported failure - RPM 0 (expected 7200-8400)",
+    "category": "HARDWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T10:52:18.774Z",
+    "message": "PHY: SFP module in Gi0/0/5 not detected - DOM read timeout after 3 retries",
+    "category": "HARDWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T10:58:44.338Z",
+    "message": "MEM: %MEM-2-MALLOC_FAIL: Packet buffer pool exhausted on NP0 - drops increasing (12847 in last 60s)",
+    "category": "HARDWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T11:03:09.662Z",
+    "message": "PWR: Power supply PSU-B input lost - running on single supply, redundancy degraded",
+    "category": "HARDWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T11:07:55.491Z",
+    "message": "ASIC: Parity error corrected on TCAM bank 2 slice 4 - recommend RMA if count exceeds 10/hr (current: 17/hr)",
+    "category": "HARDWARE_FAILURE"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T11:34:22.008Z",
+    "message": "APP: %APP-4-ASSERT: Process netmond crashed with signal SIGSEGV at 0x7f3a2c018400 - core dumped to /var/crash/netmond.4821.core",
+    "category": "UNKNOWN"
+  },
+  {
+    "device_id": "RTR-CORE-01",
+    "timestamp": "2026-06-25T11:41:07.559Z",
+    "message": "SYS: Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)",
+    "category": "UNKNOWN"
+  },
+  {
+    "device_id": "RTR-CORE-02",
+    "timestamp": "2026-06-25T11:48:33.221Z",
+    "message": "BGP: %BGP-3-MALFORMED: Received malformed UPDATE from 10.255.255.2 - attribute flags invalid (0xFF) for type 14",
+    "category": "UNKNOWN"
+  },
+  {
+    "device_id": "RTR-DIST-07",
+    "timestamp": "2026-06-25T11:55:16.887Z",
+    "message": "CTRL: Control plane watchdog triggered - event queue stalled for 12000ms, last handler: mpls_label_alloc",
+    "category": "UNKNOWN"
+  },
+  {
+    "device_id": "RTR-EDGE-03",
+    "timestamp": "2026-06-25T12:02:44.103Z",
+    "message": "SEC: Anomalous traffic pattern detected on Gi0/0/1 - 847 SYN packets/sec to random /32 destinations (no matching ACL signature)",
+    "category": "UNKNOWN"
+  }
+]
