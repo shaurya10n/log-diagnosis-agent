@@ -13,24 +13,39 @@ structured diagnosis engineers can act on.
 
 ## Architecture
 
-Mock Logs
-    |
-    v
-FastAPI API
-    |
-    v
-LangGraph Agent
-    |
-    +--> Noise Detection
-    |
-    +--> Issue Classification
-    |
-    +--> RAG Retrieval (pgvector)
-    |
-    +--> Diagnosis Generation
-    |
-    v
-JSON Diagnosis
+```mermaid
+graph TD
+    A[Mock Logs]
+    B(FastAPI API)
+    C{LangGraph Agent}
+
+    D[Noise Detection]
+    E[Issue Classification]
+    F[RAG Retrieval: pgvector]
+    G[Diagnosis Generation]
+
+    H[/JSON Diagnosis/]
+
+    A --> B
+    B --> C
+
+    C --> D
+    C --> E
+    C --> F
+    C --> G
+
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
+    classDef agent fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
+    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+
+    class C agent;
+    class H output;
+```
 
 ## Stack
 Python, FastAPI, LangGraph, HuggingFace Transformers, PostgreSQL, pgvector,
