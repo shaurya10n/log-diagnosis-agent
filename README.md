@@ -15,36 +15,20 @@ structured diagnosis engineers can act on.
 
 ```mermaid
 graph TD
-    A[Mock Logs]
-    B(FastAPI API)
-    C{LangGraph Agent}
 
-    D[Noise Detection]
-    E[Issue Classification]
-    F[RAG Retrieval: pgvector]
-    G[Diagnosis Generation]
+A[Logs] --> B[FastAPI]
 
-    H[/JSON Diagnosis/]
+B --> C[LangGraph]
 
-    A --> B
-    B --> C
+C --> D[Classifier]
 
-    C --> D
-    C --> E
-    C --> F
-    C --> G
+C --> E[RAG]
 
-    D --> H
-    E --> H
-    F --> H
-    G --> H
+E --> F[pgvector]
 
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
-    classDef agent fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
-    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+D --> G[Diagnosis]
 
-    class C agent;
-    class H output;
+F --> G
 ```
 
 ## Stack
