@@ -15,20 +15,20 @@ structured diagnosis engineers can act on.
 
 ```mermaid
 graph TD
+    A[Mock Logs] --> B[FastAPI]
+    B --> C[LangGraph Agent]
 
-A[Logs] --> B[FastAPI]
+    C --> D[1. Noise Filter]
+    D -->|98% dropped| Z[/Discarded/]
+    D -->|passes| E[2. Classifier]
 
-B --> C[LangGraph]
+    E --> F[3. Anomaly Detection]
+    F -->|known issue| G[Stored Fix]
+    F -->|true anomaly| H[4. RAG Retrieval\npgvector]
 
-C --> D[Classifier]
-
-C --> E[RAG]
-
-E --> F[pgvector]
-
-D --> G[Diagnosis]
-
-F --> G
+    G --> I[/JSON Diagnosis/]
+    H --> J[5. Diagnosis Writer]
+    J --> I
 ```
 
 ## Stack
