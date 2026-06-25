@@ -1,4 +1,4 @@
-"""Pydantic schemas for API requests, responses, and agent state."""
+"""Pydantic schemas for API requests and responses."""
 
 from pydantic import BaseModel, Field
 
@@ -9,20 +9,16 @@ class HealthResponse(BaseModel):
     status: str = Field(..., examples=["ok"])
 
 
-class DiagnosisRequest(BaseModel):
-    """Incoming log or incident payload for diagnosis."""
+class AnalyzeRequest(BaseModel):
+    """Incoming log payload for analysis."""
+
+    device_id: str = Field(..., min_length=1, description="Identifier of the device that produced the log.")
+    log: str = Field(..., min_length=1, description="Raw log text to analyze.")
+
+
+class AnalyzeResponse(BaseModel):
+    """Placeholder analysis response until AI pipeline is wired."""
 
     device_id: str
-    log_lines: list[str] = Field(default_factory=list)
-
-
-class DiagnosisResponse(BaseModel):
-    """Structured diagnosis returned to the caller."""
-
-    device_id: str
-    severity: str
-    error: str
-    anomaly_status: str
-    diagnosis: str
-    context: str
-    recommended_action: str
+    status: str
+    message: str
