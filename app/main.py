@@ -1,9 +1,15 @@
 """FastAPI application entry point."""
 
+from dotenv import load_dotenv
 from fastapi import FastAPI
 
+load_dotenv()
+
 from app import __version__
+from app.graph import build_graph
 from app.models import AnalyzeRequest, AnalyzeResponse, HealthResponse
+
+_graph = build_graph()
 
 app = FastAPI(
     title="AI Incident Diagnosis Agent",
@@ -20,9 +26,14 @@ async def health() -> HealthResponse:
 
 @app.post("/analyze", response_model=AnalyzeResponse)
 async def analyze(request: AnalyzeRequest) -> AnalyzeResponse:
-    """Accept a log payload and return a placeholder analysis result."""
-    return AnalyzeResponse(
-        device_id=request.device_id,
-        status="received",
-        message="Log received for analysis. AI pipeline not yet implemented.",
+    """Accept a log payload, run the diagnosis graph, and return the final state."""
+    result = _graph.invoke(
+        {
+            "device_id": request.device_id,
+            "raw_log": request.log,
+            "category": "",
+            "severity": "",
+            "should_continue": True,
+        }
     )
+    return AnalyzeResponse(**result)

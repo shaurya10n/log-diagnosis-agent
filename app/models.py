@@ -17,8 +17,10 @@ class AnalyzeRequest(BaseModel):
 
 
 class AnalyzeResponse(BaseModel):
-    """Placeholder analysis response until AI pipeline is wired."""
+    """Analysis result returned after running the LangGraph pipeline."""
 
     device_id: str
-    status: str
-    message: str
+    raw_log: str
+    category: str
+    severity: str
+    should_continue: bool
