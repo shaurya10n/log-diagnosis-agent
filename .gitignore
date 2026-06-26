@@ -1,0 +1,9 @@
+# Secrets — never commit
+.env
+
+# Template — safe to commit
+!.env.example
+
+.venv/
+__pycache__/
+*.pyc
