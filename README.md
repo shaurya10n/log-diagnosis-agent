@@ -12,8 +12,7 @@ Built with **FastAPI**, **LangGraph**, **Groq (llama-3.1-8b-instant)**, **senten
 graph TD
     A[POST /analyze] --> B[classify_log\nGroq LLM → category + severity]
     B -->|NOISE| Z[END]
-    B -->|KNOWN_ISSUE or ANOMALY| C[noise_filter]
-    C --> D[anomaly_check\nKeyword match against known issues]
+    B -->|KNOWN_ISSUE or ANOMALY| D[anomaly_check\nKeyword match against known issues]
     D -->|KNOWN_ISSUE + stored fix| Z
     D -->|TRUE_ANOMALY| E[rag_retrieval\npgvector similarity search]
     E --> F[diagnosis\nGroq LLM → diagnosis + recommended action]

@@ -13,17 +13,10 @@ from app.state import GraphState
 __all__ = ["GraphState", "build_graph"]
 
 
-def noise_filter(state: GraphState) -> dict[str, bool]:
-    """Stop the pipeline early when the log is classified as noise."""
-    if state["category"] == "NOISE":
-        return {"should_continue": False}
-    return {"should_continue": True}
-
-
-def _route_after_classify(state: GraphState) -> Literal["end", "noise_filter"]:
+def _route_after_classify(state: GraphState) -> Literal["end", "anomaly_check"]:
     if state["category"] == "NOISE":
         return "end"
-    return "noise_filter"
+    return "anomaly_check"
 
 
 def _route_after_anomaly_check(state: GraphState) -> Literal["end", "rag_retrieval"]:
@@ -37,7 +30,6 @@ def build_graph():
     graph = StateGraph(GraphState)
 
     graph.add_node("classify_log", classify_log)
-    graph.add_node("noise_filter", noise_filter)
     graph.add_node("anomaly_check", detect_anomaly)
     graph.add_node("rag_retrieval", retrieve_rag_context)
     graph.add_node("diagnosis", write_diagnosis)
@@ -46,9 +38,8 @@ def build_graph():
     graph.add_conditional_edges(
         "classify_log",
         _route_after_classify,
-        {"end": END, "noise_filter": "noise_filter"},
+        {"end": END, "anomaly_check": "anomaly_check"},
     )
-    graph.add_edge("noise_filter", "anomaly_check")
     graph.add_conditional_edges(
         "anomaly_check",
         _route_after_anomaly_check,
