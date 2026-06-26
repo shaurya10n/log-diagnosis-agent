@@ -1,0 +1,82 @@
+[
+  {
+    "id": "doc_1",
+    "source": "Router Manual p.45",
+    "content": "If eth0 interface timeout persists for more than 5 minutes, verify ISP gateway connectivity using ping. Check SFP module seating, cable integrity, and that speed/duplex settings match the upstream switch port."
+  },
+  {
+    "id": "doc_2",
+    "source": "Router Manual p.112",
+    "content": "When a BGP neighbor enters Idle or Active state, confirm TCP port 179 reachability, matching AS numbers, and MD5 authentication keys. Use 'clear ip bgp <peer>' only after verifying the remote peer is operational."
+  },
+  {
+    "id": "doc_3",
+    "source": "Router Manual p.118",
+    "content": "BGP hold timer expiration typically indicates loss of keepalive packets. Check for ACLs blocking TCP 179, MTU mismatches on the peering link, or upstream device reloads before resetting the session."
+  },
+  {
+    "id": "doc_4",
+    "source": "Router Manual p.156",
+    "content": "OSPF adjacency failures often result from mismatched area IDs, hello/dead intervals, or network types (broadcast vs point-to-point). Verify both routers share the same subnet and that passive-interface is not set incorrectly."
+  },
+  {
+    "id": "doc_5",
+    "source": "Router Manual p.201",
+    "content": "NTP synchronization failures may occur when UDP port 123 is blocked or configured servers are unreachable. Confirm stratum settings, authentication keys, and that at least two diverse NTP sources are configured for redundancy."
+  },
+  {
+    "id": "doc_6",
+    "source": "Router Manual p.88",
+    "content": "Sustained CPU spikes above 80% should be investigated with 'show processes cpu sorted'. Common causes include excessive SNMP polling, debug logging left enabled, or routing table churn from unstable BGP peers."
+  },
+  {
+    "id": "doc_7",
+    "source": "Router Manual p.92",
+    "content": "Memory pressure alerts above 85% utilization require identifying top consumers via 'show processes memory'. Consider reducing BGP table size, disabling unused features, or scheduling a maintenance reload if leaks are suspected."
+  },
+  {
+    "id": "doc_8",
+    "source": "Router Manual p.310",
+    "content": "Firmware update errors during boot may leave the device in a recovery partition. Verify checksum of the downloaded image, ensure sufficient flash storage, and use the serial console to select the previous known-good image if rollback is needed."
+  },
+  {
+    "id": "doc_9",
+    "source": "Router Manual p.28",
+    "content": "Power supply alerts indicate loss of redundancy or complete PSU failure. Reseat the module, verify input voltage and cable connections, and replace the failed unit immediately to avoid single-point-of-failure during the next outage."
+  },
+  {
+    "id": "doc_10",
+    "source": "Router Manual p.174",
+    "content": "Spanning Tree topology change notifications (TCN) suggest a link state change or rogue switch on the LAN. Identify the originating port with 'show spanning-tree detail' and ensure portfast is enabled only on true edge access ports."
+  },
+  {
+    "id": "doc_11",
+    "source": "Router Manual p.230",
+    "content": "DHCP pool exhaustion causes clients to fail address assignment. Expand the scope, reduce lease duration, or remove stale static reservations. Check for rogue DHCP servers responding on the same VLAN."
+  },
+  {
+    "id": "doc_12",
+    "source": "Router Manual p.245",
+    "content": "DNS resolution failures on the router often trace to unreachable name servers or incorrect 'ip name-server' entries. Verify UDP/TCP port 53 connectivity and test with 'nslookup' using each configured resolver."
+  },
+  {
+    "id": "doc_13",
+    "source": "Router Manual p.268",
+    "content": "IPsec or VPN tunnel drops may result from mismatched phase 1/2 parameters, expired certificates, or NAT traversal issues. Compare encryption domains, lifetimes, and DPD settings on both tunnel endpoints."
+  },
+  {
+    "id": "doc_14",
+    "source": "Router Manual p.190",
+    "content": "QoS misconfiguration can starve control-plane traffic during congestion. Verify class maps match actual traffic types, ensure LLQ is applied to voice/video, and confirm policy maps are bound to the correct interfaces."
+  },
+  {
+    "id": "doc_15",
+    "source": "Router Manual p.132",
+    "content": "ACL drop counters increasing on an interface suggest legitimate traffic is being denied. Review ACE order, confirm source/destination subnets, and use 'log' keyword temporarily to identify which rule is blocking required flows."
+  },
+  {
+    "id": "doc_16",
+    "source": "Router Manual p.35",
+    "content": "Hardware sensor alerts for temperature, fan speed, or voltage require immediate attention. Check airflow obstructions, clean dust filters, and verify environmental thresholds in the data center meet vendor specifications."
+  }
+]

@@ -36,6 +36,7 @@ async def analyze(request: AnalyzeRequest) -> AnalyzeResponse:
             "should_continue": True,
             "anomaly_status": "",
             "known_fix": None,
+            "rag_context": [],
         }
     )
     return AnalyzeResponse(**result)
