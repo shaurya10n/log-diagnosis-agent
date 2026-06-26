@@ -34,6 +34,8 @@ async def analyze(request: AnalyzeRequest) -> AnalyzeResponse:
             "category": "",
             "severity": "",
             "should_continue": True,
+            "anomaly_status": "",
+            "known_fix": None,
         }
     )
     return AnalyzeResponse(**result)

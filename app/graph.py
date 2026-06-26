@@ -4,6 +4,7 @@ from typing import Literal
 
 from langgraph.graph import END, START, StateGraph
 
+from app.agents.anomaly_detector import detect_anomaly
 from app.agents.classifier import classify_log
 from app.state import GraphState
 
@@ -17,8 +18,8 @@ def noise_filter(state: GraphState) -> dict[str, bool]:
     return {"should_continue": True}
 
 
-def anomaly_check(state: GraphState) -> dict:
-    """Placeholder for downstream anomaly detection."""
+def rag_retrieval(state: GraphState) -> dict:
+    """Placeholder for downstream RAG retrieval."""
     return {}
 
 
@@ -28,13 +29,20 @@ def _route_after_classify(state: GraphState) -> Literal["end", "noise_filter"]:
     return "noise_filter"
 
 
+def _route_after_anomaly_check(state: GraphState) -> Literal["end", "rag_retrieval"]:
+    if state["anomaly_status"] == "KNOWN_ISSUE":
+        return "end"
+    return "rag_retrieval"
+
+
 def build_graph():
     """Construct and compile the diagnosis agent graph."""
     graph = StateGraph(GraphState)
 
     graph.add_node("classify_log", classify_log)
     graph.add_node("noise_filter", noise_filter)
-    graph.add_node("anomaly_check", anomaly_check)
+    graph.add_node("anomaly_check", detect_anomaly)
+    graph.add_node("rag_retrieval", rag_retrieval)
 
     graph.add_edge(START, "classify_log")
     graph.add_conditional_edges(
@@ -43,6 +51,11 @@ def build_graph():
         {"end": END, "noise_filter": "noise_filter"},
     )
     graph.add_edge("noise_filter", "anomaly_check")
-    graph.add_edge("anomaly_check", END)
+    graph.add_conditional_edges(
+        "anomaly_check",
+        _route_after_anomaly_check,
+        {"end": END, "rag_retrieval": "rag_retrieval"},
+    )
+    graph.add_edge("rag_retrieval", END)
 
     return graph.compile()

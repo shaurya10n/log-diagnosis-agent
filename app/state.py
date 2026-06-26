@@ -1,6 +1,6 @@
 """LangGraph state schema for the diagnosis pipeline."""
 
-from typing import TypedDict
+from typing import Optional, TypedDict
 
 
 class GraphState(TypedDict):
@@ -11,3 +11,5 @@ class GraphState(TypedDict):
     category: str
     severity: str
     should_continue: bool
+    anomaly_status: str
+    known_fix: Optional[str]

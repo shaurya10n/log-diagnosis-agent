@@ -1,5 +1,7 @@
 """Pydantic schemas for API requests and responses."""
 
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -24,3 +26,5 @@ class AnalyzeResponse(BaseModel):
     category: str
     severity: str
     should_continue: bool
+    anomaly_status: str
+    known_fix: Optional[str] = None
