@@ -14,3 +14,5 @@ class GraphState(TypedDict):
     anomaly_status: str
     known_fix: Optional[str]
     rag_context: List[str]
+    diagnosis: str
+    recommended_action: str

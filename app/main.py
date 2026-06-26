@@ -37,6 +37,17 @@ async def analyze(request: AnalyzeRequest) -> AnalyzeResponse:
             "anomaly_status": "",
             "known_fix": None,
             "rag_context": [],
+            "diagnosis": "",
+            "recommended_action": "",
         }
     )
-    return AnalyzeResponse(**result)
+    return AnalyzeResponse(
+        device_id=result["device_id"],
+        category=result["category"],
+        severity=result["severity"],
+        anomaly_status=result["anomaly_status"],
+        known_fix=result.get("known_fix"),
+        rag_context=result.get("rag_context", []),
+        diagnosis=result.get("diagnosis", ""),
+        recommended_action=result.get("recommended_action", ""),
+    )

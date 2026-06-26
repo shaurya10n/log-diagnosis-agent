@@ -19,13 +19,17 @@ class AnalyzeRequest(BaseModel):
 
 
 class AnalyzeResponse(BaseModel):
-    """Analysis result returned after running the LangGraph pipeline."""
+    """Full analysis result returned after running the LangGraph pipeline."""
 
     device_id: str
-    raw_log: str
     category: str
     severity: str
-    should_continue: bool
     anomaly_status: str
     known_fix: Optional[str] = None
     rag_context: List[str] = []
+    diagnosis: str = ""
+    recommended_action: str = ""
+
+
+# Alias for clarity in documentation and downstream consumers.
+AnalysisResponse = AnalyzeResponse
