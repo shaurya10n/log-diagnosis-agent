@@ -1,5 +1,7 @@
 """FastAPI application entry point."""
 
+from typing import List
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
@@ -7,7 +9,14 @@ load_dotenv()
 
 from app import __version__
 from app.graph import build_graph
-from app.models import AnalyzeRequest, AnalyzeResponse, HealthResponse
+from app.models import (
+    AnalyzeRequest,
+    AnalyzeResponse,
+    DashboardStats,
+    HealthResponse,
+    LogEntry,
+)
+from app.store import get_logs, get_stats, record_analysis
 
 _graph = build_graph()
 
@@ -22,6 +31,18 @@ app = FastAPI(
 async def health() -> HealthResponse:
     """Liveness probe for orchestrators and load balancers."""
     return HealthResponse(status="ok")
+
+
+@app.get("/logs", response_model=List[LogEntry])
+async def logs() -> List[LogEntry]:
+    """Return the last 20 analysis results stored in memory."""
+    return get_logs()
+
+
+@app.get("/dashboard/stats", response_model=DashboardStats)
+async def dashboard_stats() -> DashboardStats:
+    """Return aggregate analysis counters from in-memory history."""
+    return get_stats()
 
 
 @app.post("/analyze", response_model=AnalyzeResponse)
@@ -41,7 +62,7 @@ async def analyze(request: AnalyzeRequest) -> AnalyzeResponse:
             "recommended_action": "",
         }
     )
-    return AnalyzeResponse(
+    response = AnalyzeResponse(
         device_id=result["device_id"],
         category=result["category"],
         severity=result["severity"],
@@ -51,3 +72,5 @@ async def analyze(request: AnalyzeRequest) -> AnalyzeResponse:
         diagnosis=result.get("diagnosis", ""),
         recommended_action=result.get("recommended_action", ""),
     )
+    record_analysis(request.log, response)
+    return response
